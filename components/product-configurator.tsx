@@ -10,6 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import type { Product, ProductVariant, CartItemModifier } from "@/lib/types"
+import { getAssetPath } from "@/lib/utils"
 import { useCartStore } from "@/hooks/use-cart-store"
 
 interface ProductConfiguratorProps {
@@ -158,7 +159,7 @@ export function ProductConfigurator({ product, open, onOpenChange }: ProductConf
         <ScrollArea className="max-h-[90vh]">
           <div className="relative aspect-video w-full overflow-hidden bg-muted">
             <Image
-              src={product.image || "/placeholder.svg"}
+              src={getAssetPath(product.image || "/placeholder.svg")}
               alt={product.name}
               fill
               className="object-cover"

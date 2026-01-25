@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Minus, Plus } from "lucide-react"
 import type { Product } from "@/lib/types"
+import { getAssetPath } from "@/lib/utils"
 import { useCartStore } from "@/hooks/use-cart-store"
 
 interface ProductCardProps {
@@ -40,7 +41,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
     <div className="group flex h-full flex-col overflow-hidden rounded-xl bg-card transition-all hover:shadow-lg">
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
-          src={product.image || "/placeholder.svg"}
+          src={getAssetPath(product.image || "/placeholder.svg")}
           alt={product.name}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"

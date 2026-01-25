@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
+import { getAssetPath } from "@/lib/utils"
 import { useCartStore } from "@/hooks/use-cart-store"
 
 interface CartDrawerProps {
@@ -53,7 +54,7 @@ export function CartDrawer({ open, onOpenChange, onCheckout }: CartDrawerProps) 
                 <div className="flex gap-4">
                   <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md bg-muted">
                     <Image
-                      src={item.product.image || "/placeholder.svg"}
+                      src={getAssetPath(item.product.image || "/placeholder.svg")}
                       alt={item.product.name}
                       fill
                       className="object-cover"

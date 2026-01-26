@@ -10,8 +10,8 @@ interface CategoryTabsProps {
 
 export function CategoryTabs({ selectedCategory, onCategoryChange }: CategoryTabsProps) {
   return (
-    <div className="sticky top-16 z-40 border-b border-border bg-black">
-      <div className="container px-4 py-3">
+    <div className="sticky top-16 z-40 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="w-full px-4 md:px-8 py-3">
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => onCategoryChange("all")}

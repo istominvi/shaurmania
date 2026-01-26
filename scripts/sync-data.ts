@@ -141,17 +141,19 @@ async function main() {
     console.log('First Row:', parsed.data[0]);
 
     const products: Product[] = [];
+    const rows = parsed.data as any[];
 
-    for (const row of parsed.data as any[]) {
-      if (!row['ID']) {
-          console.warn('Skipping row without ID:', row);
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      if (!row['Название']) {
+          console.warn('Skipping row without Name:', row);
           continue;
       }
 
       const originalCategory = row['Категория']?.trim();
       const category = categoryMap[originalCategory] || 'shawarma';
 
-      const id = row['ID'];
+      const id = (i + 1).toString();
       const originalImage = row['Изображение'];
       let imagePath = originalImage; // Default to remote URL if download fails
 
@@ -178,7 +180,7 @@ async function main() {
       }
 
       const product: Product = {
-        id: row['ID'],
+        id,
         name: row['Название'],
         description: row['Описание'],
         category: category,

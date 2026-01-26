@@ -1,5 +1,12 @@
 // Product and cart types for Шаурмания
-export type ProductCategory = "shawarma" | "combo" | "sides" | "drinks" | "desserts"
+export type ProductCategory =
+  | "shawarma"
+  | "combo"
+  | "sides"
+  | "drinks"
+  | "desserts"
+  | "hotdogs"
+  | "addons"
 
 export interface ProductVariant {
   id: string

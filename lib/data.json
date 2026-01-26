@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "name": "Шаурма со свининой",
+    "description": "Сочная свинина, свежие овощи, фирменный соус",
+    "category": "shawarma",
+    "basePrice": 250,
+    "image": "https://drive.google.com/u/0/drive-viewer/AKGpihZ1IXcaWD8BErDUZvSzch7AzmYhqR3OHoMGFIsXXa7rAG1Jrn0UYWxbbvi42eQHMnb0rDAhzu2B0N5j1UJAr-48jLsdRFKiL-0=s1600-rw-v1",
+    "available": true
+  },
+  {
+    "id": "2",
+    "name": "Шаурма со свининой и сыром",
+    "description": "Сочная свинина с расплавленным сыром, свежие овощи, фирменный соус",
+    "category": "shawarma",
+    "basePrice": 270,
+    "image": "/products/2.jpg",
+    "available": true
+  },
+  {
+    "id": "3",
+    "name": "Шаурма с куриным филе",
+    "description": "Нежное куриное филе, овощи, соус",
+    "category": "shawarma",
+    "basePrice": 230,
+    "image": "/products/3.jpg",
+    "available": true
+  },
+  {
+    "id": "4",
+    "name": "Шаурма с куриным филе и сыром",
+    "description": "Курица с сыром",
+    "category": "shawarma",
+    "basePrice": 260,
+    "image": "",
+    "available": true
+  },
+  {
+    "id": "5",
+    "name": "Шаурма с ветчиной",
+    "description": "Ветчина, овощи, соус",
+    "category": "shawarma",
+    "basePrice": 220,
+    "image": "",
+    "available": true
+  },
+  {
+    "id": "6",
+    "name": "Шаурма с молочной сосиской",
+    "description": "Молочная сосиска, овощи",
+    "category": "shawarma",
+    "basePrice": 250,
+    "image": "",
+    "available": true
+  }
+]

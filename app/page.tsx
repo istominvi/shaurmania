@@ -11,8 +11,10 @@ import { LocationDialog } from "@/components/location-dialog"
 import { CharcoalSparks } from "@/components/charcoal-sparks"
 import { Footer } from "@/components/footer"
 import type { Product, ProductCategory } from "@/lib/types"
-import { mockProducts } from "@/lib/mock-data"
+import data from "@/lib/data.json"
 import { useCartStore } from "@/hooks/use-cart-store"
+
+const products = data as unknown as Product[]
 
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory | "all">("all")
@@ -30,7 +32,7 @@ export default function HomePage() {
   }, [location])
 
   const filteredProducts =
-    selectedCategory === "all" ? mockProducts : mockProducts.filter((p) => p.category === selectedCategory)
+    selectedCategory === "all" ? products : products.filter((p) => p.category === selectedCategory)
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product)
@@ -53,7 +55,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold tracking-tight">
             {selectedCategory === "all"
               ? "Все товары"
-              : mockProducts.find((p) => p.category === selectedCategory)?.category}
+              : products.find((p) => p.category === selectedCategory)?.category}
           </h2>
           <p className="mt-1 text-muted-foreground">Выберите товар для заказа</p>
         </div>

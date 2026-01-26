@@ -26,25 +26,57 @@ export function CheckoutDialog({ open, onOpenChange }: CheckoutDialogProps) {
     comment: "",
   })
 
-  const { total, location, clearCart } = useCartStore()
+  const { items, total, location, clearCart } = useCartStore()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    const itemsText = items
+      .map((item) => {
+        let name = item.product.name
+        if (item.variant) name += ` (${item.variant.name})`
+        return `${name} x${item.quantity}`
+      })
+      .join(", ")
 
-    setIsSubmitting(false)
-    setIsSuccess(true)
+    const payload = {
+      name: formData.name,
+      phone: formData.phone,
+      address: location?.address || "Самовывоз",
+      items: itemsText,
+      total: total,
+      comment: formData.comment,
+    }
 
-    // Clear cart after 2 seconds and close
-    setTimeout(() => {
-      clearCart()
-      setIsSuccess(false)
-      setFormData({ name: "", phone: "", email: "", comment: "" })
-      onOpenChange(false)
-    }, 2000)
+    try {
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbxmEUiPm-IjB4nLZA7eu5cXJMhF9_JvcEbH_XlVxhWadVIhXZxIcUjuFw-guRFYWePZ/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        },
+      )
+
+      setIsSubmitting(false)
+      setIsSuccess(true)
+
+      // Clear cart after 2 seconds and close
+      setTimeout(() => {
+        clearCart()
+        setIsSuccess(false)
+        setFormData({ name: "", phone: "", email: "", comment: "" })
+        onOpenChange(false)
+      }, 2000)
+    } catch (error) {
+      console.error("Checkout error:", error)
+      setIsSubmitting(false)
+      // In a real app, show error toast here
+    }
   }
 
   const handleClose = () => {

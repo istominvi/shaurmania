@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { getAssetPath } from "@/lib/utils"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin", "cyrillic"] })
@@ -14,8 +15,8 @@ export const metadata: Metadata = {
   keywords: ["шаурма", "доставка", "Чита", "еда", "fast food", "шаурма чита"],
   authors: [{ name: "Шаурмания" }],
   icons: {
-    icon: "/images/favicon.png",
-    apple: "/images/favicon.png",
+    icon: getAssetPath("/images/favicon.png"),
+    apple: getAssetPath("/images/favicon.png"),
   },
   manifest: "/manifest.json",
   appleWebApp: {

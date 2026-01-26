@@ -37,12 +37,12 @@ export function CartDrawer({ open, onOpenChange, onCheckout }: CartDrawerProps) 
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="flex w-full flex-col h-full p-0 sm:max-w-lg">
+      <SheetContent side="right" className="flex flex-col h-full w-full p-0 sm:max-w-lg">
         <SheetHeader className="border-b border-border p-6">
           <SheetTitle>Корзина</SheetTitle>
         </SheetHeader>
 
-        <ScrollArea className="flex-1">
+        <ScrollArea className="flex-1 overflow-y-auto">
           <div className="space-y-4 p-6">
             {items.map((item) => (
               <div key={item.cartItemId} className="group relative rounded-lg border border-border p-4">

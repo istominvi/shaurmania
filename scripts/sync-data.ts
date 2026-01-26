@@ -5,14 +5,7 @@ import https from 'https';
 import Papa from 'papaparse';
 
 // Define types locally to avoid import issues with ts-node
-type ProductCategory =
-  | "shawarma"
-  | "combo"
-  | "sides"
-  | "drinks"
-  | "desserts"
-  | "hotdogs"
-  | "addons";
+type ProductCategory = string;
 
 interface Product {
   id: string;
@@ -27,17 +20,6 @@ interface Product {
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSF-SrUyWUFNrlauDFOomL9FIO9xYN2NhYcdkBTcmz1GP3P-FYgCreNtqgox_v2yG4ku8Uu7dmDaCNI/pub?gid=0&single=true&output=csv';
 const DATA_FILE = path.join(process.cwd(), 'lib/data.json');
 const PUBLIC_PRODUCTS_DIR = path.join(process.cwd(), 'public/products');
-
-const categoryMap: Record<string, ProductCategory> = {
-  'Шаурма': 'shawarma',
-  'Хот-доги': 'hotdogs',
-  'Закуски': 'sides',
-  'Картофель фри': 'sides',
-  'Напитки': 'drinks',
-  'Комбо': 'combo',
-  'Десерты': 'desserts',
-  'Добавки': 'addons',
-};
 
 async function fetchCSV(url: string): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -150,8 +132,7 @@ async function main() {
           continue;
       }
 
-      const originalCategory = row['Категория']?.trim();
-      const category = categoryMap[originalCategory] || 'shawarma';
+      const category = row['Категория']?.trim() || 'Другое';
 
       const id = (i + 1).toString();
       const originalImage = row['Изображение'];

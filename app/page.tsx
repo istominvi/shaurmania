@@ -31,6 +31,11 @@ export default function HomePage() {
     }
   }, [location])
 
+  const uniqueCategories = Array.from(new Set(products.map((p) => p.category))).map((cat) => ({
+    id: cat,
+    name: cat,
+  }))
+
   const filteredProducts =
     selectedCategory === "all" ? products : products.filter((p) => p.category === selectedCategory)
 
@@ -48,7 +53,11 @@ export default function HomePage() {
       <CharcoalSparks />
 
       <Header onCartClick={() => setIsCartOpen(true)} onLocationClick={() => setIsLocationOpen(true)} />
-      <CategoryTabs selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} />
+      <CategoryTabs
+        categories={uniqueCategories}
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+      />
 
       <main className="w-full px-4 md:px-8 relative z-10 py-8">
         <div className="mb-6">

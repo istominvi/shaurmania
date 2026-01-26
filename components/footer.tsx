@@ -19,7 +19,7 @@ export function Footer() {
 
   return (
     <footer className="relative z-10 border-t border-border bg-background/95 backdrop-blur">
-      <div className="container px-4 py-12">
+      <div className="w-full px-4 md:px-8 py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {/* About Section */}
           <div>
@@ -91,7 +91,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+        <div className="mt-6 border-t border-border py-4 text-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Шаурмания. Все права защищены.</p>
         </div>
       </div>

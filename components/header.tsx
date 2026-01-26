@@ -4,6 +4,7 @@ import { ShoppingBag, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useCartStore } from "@/hooks/use-cart-store"
+import { getAssetPath } from "@/lib/utils"
 import Image from "next/image"
 
 interface HeaderProps {
@@ -21,7 +22,7 @@ export function Header({ onCartClick, onLocationClick }: HeaderProps) {
       <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex items-center">
           <Image
-            src="/images/shaurmania-logo.png"
+            src={getAssetPath("/images/shaurmania-logo.png")}
             alt="Шаурмания"
             width={120}
             height={40}

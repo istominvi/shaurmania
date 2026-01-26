@@ -37,14 +37,9 @@ export function CartDrawer({ open, onOpenChange, onCheckout }: CartDrawerProps) 
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="flex w-full flex-col p-0 sm:max-w-lg">
+      <SheetContent side="right" className="flex w-full flex-col h-full p-0 sm:max-w-lg">
         <SheetHeader className="border-b border-border p-6">
-          <div className="flex items-center justify-between">
-            <SheetTitle>Корзина</SheetTitle>
-            <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
+          <SheetTitle>Корзина</SheetTitle>
         </SheetHeader>
 
         <ScrollArea className="flex-1">
@@ -117,7 +112,7 @@ export function CartDrawer({ open, onOpenChange, onCheckout }: CartDrawerProps) 
           </div>
         </ScrollArea>
 
-        <div className="border-t border-border bg-background p-6">
+        <div className="mt-auto border-t border-border bg-background p-6">
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">Сумма заказа</span>

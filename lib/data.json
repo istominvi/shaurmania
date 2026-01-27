@@ -59,6 +59,7 @@
     "description": "",
     "category": "Шаурма",
     "basePrice": 310,
+    "weight": "470",
     "image": "/products/9.jpg",
     "available": true
   },
@@ -68,6 +69,7 @@
     "description": "",
     "category": "Шаурма",
     "basePrice": 250,
+    "weight": "270",
     "image": "/products/10.jpg",
     "available": true
   },
@@ -77,6 +79,7 @@
     "description": "",
     "category": "Шаурма",
     "basePrice": 330,
+    "weight": "440",
     "image": "/products/11.jpg",
     "available": true
   },
@@ -86,6 +89,7 @@
     "description": "",
     "category": "Шаурма",
     "basePrice": 270,
+    "weight": "240",
     "image": "/products/12.jpg",
     "available": true
   },
@@ -95,6 +99,7 @@
     "description": "",
     "category": "Шаурма",
     "basePrice": 230,
+    "weight": "270 гр",
     "image": "/products/13.jpg",
     "available": true
   },
@@ -104,6 +109,7 @@
     "description": "",
     "category": "Шаурма",
     "basePrice": 290,
+    "weight": "470 гр",
     "image": "/products/14.jpg",
     "available": true
   },
@@ -113,21 +119,23 @@
     "description": "",
     "category": "Шаурма",
     "basePrice": 310,
+    "weight": "440 г.",
     "image": "/products/15.jpg",
     "available": true
   },
   {
     "id": "16",
-    "name": "Шаурма с ветчиной, 470 г.",
+    "name": "Шаурма с куриным филе и сыром, 240 г.",
     "description": "",
     "category": "Шаурма",
     "basePrice": 260,
+    "weight": "240 г.",
     "image": "/products/16.jpg",
     "available": true
   },
   {
     "id": "17",
-    "name": "Шаурма с куриным филе и сыром, 240 г.",
+    "name": "Шаурма с ветчиной, 470 г.",
     "description": "",
     "category": "Шаурма",
     "basePrice": 260,

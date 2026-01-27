@@ -29,6 +29,7 @@ export interface Product {
   category: ProductCategory
   image: string
   basePrice: number
+  weight?: string
   variants?: ProductVariant[] // e.g., small/medium/large
   modifiers?: ProductModifier[] // e.g., sauces, extras, no items
   available: boolean

@@ -57,7 +57,10 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
         <h3 className="text-base font-semibold leading-tight text-card-foreground">{product.name}</h3>
         <p className="mt-1 line-clamp-2 text-xs text-muted-foreground">{product.description}</p>
         <div className="mt-auto flex flex-col gap-2 pt-2">
-          <span className="whitespace-nowrap text-lg font-bold">{product.basePrice} ₽</span>
+          <div className="flex items-center justify-between">
+            <span className="whitespace-nowrap text-lg font-bold">{product.basePrice} ₽</span>
+            {product.weight && <span className="text-sm text-muted-foreground">{product.weight}</span>}
+          </div>
           {totalQuantity > 0 ? (
             <div className="flex h-8 w-full items-center justify-between rounded-md bg-primary px-0 text-primary-foreground">
               <Button

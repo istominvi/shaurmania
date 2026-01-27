@@ -12,6 +12,7 @@ interface Product {
   category: string;
   image: string;
   basePrice: number;
+  weight?: string;
   available: boolean;
 }
 
@@ -164,6 +165,7 @@ async function main() {
         description: row['Описание'],
         category: category,
         basePrice: parseInt(row['Цена'], 10) || 0,
+        weight: row['Выход'] || undefined,
         image: imagePath,
         available: true // Default
       };

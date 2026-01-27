@@ -11,7 +11,6 @@ const _geistMono = Geist_Mono({ subsets: ["latin", "cyrillic"] })
 export const metadata: Metadata = {
   title: "Шаурмания — Доставка шаурмы в Чите",
   description: "Закажите вкуснейшую шаурму с доставкой в Чите. Свежие ингредиенты, быстрая доставка, низкие цены.",
-  generator: "v0.app",
   keywords: ["шаурма", "доставка", "Чита", "еда", "fast food", "шаурма чита"],
   authors: [{ name: "Шаурмания" }],
   icons: {

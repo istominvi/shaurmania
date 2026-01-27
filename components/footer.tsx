@@ -1,20 +1,14 @@
-import { MapPin, Phone, Clock } from "lucide-react"
+import { MapPin, Phone, Clock, ExternalLink } from "lucide-react"
+import locationsData from "@/lib/locations.json"
+import { Location } from "@/lib/types"
+
+const locations = locationsData as Location[]
 
 export function Footer() {
-  const branches = [
-    { address: "Улица Виля Липатова, 26/1", rating: "4.5" },
-    { address: "Улица Ленина, 83", rating: "4.1", hours: "Круглосуточно" },
-    { address: "Микрорайон Девичья Сопка, 1а", rating: "3.4" },
-    { address: "Строителей, 1", rating: "3.7" },
-    { address: "5-й микрорайон, 29/2", rating: "3.3" },
-    { address: "Советов проспект, 7Б", rating: "3.4" },
-    { address: "Улица Генерала Белика, 1", rating: "3.9" },
-    { address: "Улица Ленина, 149/1", rating: "3.5" },
-    { address: "Улица Бабушкина, 98", rating: "4.4" },
-    { address: "Амурская улица, 98", rating: "3.9" },
-    { address: "Улица Курнатовского, 25а/3", rating: "3.7" },
-    { address: "Улица Бабушкина, 30", rating: "4.1" },
-    { address: "Иркутская улица, 16/1", rating: "3.9" },
+  // Fallback data if locations.json is empty (e.g. during initial build or sync failure)
+  const hasLocations = locations.length > 0
+  const displayLocations = hasLocations ? locations : [
+    { id: "1", address: "Улица Ленина, 83", hours: "Круглосуточно", phone: "" }
   ]
 
   return (
@@ -30,7 +24,7 @@ export function Footer() {
             </p>
             <div className="mt-4 flex items-center gap-2 text-sm">
               <MapPin className="h-4 w-4 text-primary" />
-              <span className="font-semibold">13 филиалов в Чите</span>
+              <span className="font-semibold">{hasLocations ? `${locations.length} филиалов в Чите` : "Сеть филиалов в Чите"}</span>
             </div>
           </div>
 
@@ -42,9 +36,10 @@ export function Footer() {
                 <Clock className="h-4 w-4 text-primary" />
                 <span>Большинство филиалов: с 10:00 до 22:00</span>
               </div>
+               {/* This is a bit specific, maybe dynamic? */}
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-primary" />
-                <span>Филиал на ул. Ленина, 83: круглосуточно</span>
+                <span>Смотрите режим работы каждого филиала ниже</span>
               </div>
             </div>
           </div>
@@ -53,6 +48,7 @@ export function Footer() {
           <div>
             <h3 className="mb-4 text-lg font-semibold">Контакты</h3>
             <div className="space-y-2 text-sm text-muted-foreground">
+               {/* Removed generic phone check, maybe add phone from first location? */}
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
                 <span>Средний чек: 250-300 ₽</span>
@@ -68,20 +64,40 @@ export function Footer() {
         <div className="mt-12">
           <h3 className="mb-6 text-xl font-semibold text-center">Наши филиалы</h3>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {branches.map((branch, index) => (
+            {displayLocations.map((branch, index) => (
               <div
-                key={index}
+                key={branch.id || index}
                 className="rounded-lg border border-border bg-card p-4 text-sm transition-colors hover:bg-accent"
               >
                 <div className="flex items-start gap-2">
                   <MapPin className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
                   <div>
                     <p className="font-medium leading-snug">{branch.address}</p>
-                    <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
-                      <span className="rounded bg-primary/10 px-2 py-0.5 font-semibold text-primary">
-                        ⭐ {branch.rating}
-                      </span>
-                      {branch.hours && <span className="text-green-500">{branch.hours}</span>}
+                    <div className="mt-2 flex flex-col gap-1 text-xs text-muted-foreground">
+                      {branch.hours && (
+                         <div className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            <span className="text-green-600 font-medium">{branch.hours}</span>
+                         </div>
+                      )}
+                      {branch.phone && (
+                          <div className="flex items-center gap-1">
+                             <Phone className="h-3 w-3" />
+                             <span>{branch.phone}</span>
+                          </div>
+                      )}
+                      <div className="flex gap-2 mt-1">
+                        {branch.link2gis && (
+                            <a href={branch.link2gis} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center gap-0.5">
+                                2GIS <ExternalLink className="h-2 w-2" />
+                            </a>
+                        )}
+                        {branch.linkYandex && (
+                            <a href={branch.linkYandex} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center gap-0.5">
+                                Yandex <ExternalLink className="h-2 w-2" />
+                            </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

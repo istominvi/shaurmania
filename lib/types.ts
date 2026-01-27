@@ -70,3 +70,12 @@ export interface Cart {
   total: number
   location?: LocationInfo
 }
+
+export interface Location {
+  id: string
+  address: string
+  phone: string
+  hours: string
+  link2gis?: string
+  linkYandex?: string
+}

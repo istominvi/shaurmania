@@ -8,7 +8,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useCartStore } from "@/hooks/use-cart-store"
-import type { LocationInfo } from "@/lib/types"
+import type { LocationInfo, Location } from "@/lib/types"
+import locationsData from "@/lib/locations.json"
+
+const locations = locationsData as Location[]
 
 interface LocationDialogProps {
   open: boolean
@@ -75,10 +78,24 @@ export function LocationDialog({ open, onOpenChange }: LocationDialogProps) {
                     Самовывоз
                   </Label>
                   <p className="mt-1 text-sm text-muted-foreground">Заберите заказ сами - бесплатно</p>
-                  <p className="mt-2 text-xs text-muted-foreground">
-                    <MapPin className="mr-1 inline h-3 w-3" />
-                    ул. Ленина, 123, Чита
-                  </p>
+
+                  <div className="mt-2 text-xs text-muted-foreground">
+                    {locations.length > 0 ? (
+                       <div className="max-h-24 overflow-y-auto space-y-1 pr-1 custom-scrollbar">
+                          {locations.map(loc => (
+                            <div key={loc.id} className="flex items-start gap-1">
+                               <MapPin className="mt-0.5 h-3 w-3 flex-shrink-0" />
+                               <span>{loc.address}</span>
+                            </div>
+                          ))}
+                       </div>
+                    ) : (
+                        <p>
+                           <MapPin className="mr-1 inline h-3 w-3" />
+                           ул. Ленина, 123, Чита
+                        </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

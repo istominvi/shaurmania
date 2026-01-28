@@ -28,10 +28,6 @@ export function Footer() {
               Шаурмания — сеть кафе быстрого питания в Чите. Мы готовим вкусную и качественную шаурму, бургеры и другие
               блюда по доступным ценам.
             </p>
-            <div className="mt-4 flex items-center gap-2 text-sm">
-              <MapPin className="h-4 w-4 text-primary" />
-              <span className="font-semibold">13 филиалов в Чите</span>
-            </div>
           </div>
 
           {/* Hours Section */}

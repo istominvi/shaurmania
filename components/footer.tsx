@@ -55,7 +55,15 @@ export function Footer() {
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
-                <span>Средний чек: 250-300 ₽</span>
+                <span>Ул. Столярова, 83: +7 (914) 510‒91‒80</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-primary" />
+                <span>Ул. Красной Звезды, 70/1: +7 (914) 515‒48‒46</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-primary" />
+                <span>Ул. Новобульварная, 92 киоск: +7 (914) 516‒96‒78</span>
               </div>
               <p className="leading-relaxed">
                 Оформите заказ через наш сайт, и мы доставим вашу шаурму горячей и свежей!

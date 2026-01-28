@@ -36,11 +36,15 @@ export function Footer() {
             <div className="space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-primary" />
-                <span>Большинство филиалов: с 10:00 до 22:00</span>
+                <span>Ул. Столярова, 83: с 10:00 до 23:00</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-primary" />
-                <span>Филиал на ул. Ленина, 83: круглосуточно</span>
+                <span>Ул. Красной Звезды, 70/1: с 10:00 до 23:00</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-primary" />
+                <span>Ул. Новобульварная, 92 киоск: с 10:00 до 23:00</span>
               </div>
             </div>
           </div>

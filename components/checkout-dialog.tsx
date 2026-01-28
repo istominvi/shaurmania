@@ -40,10 +40,17 @@ export function CheckoutDialog({ open, onOpenChange }: CheckoutDialogProps) {
       })
       .join(", ")
 
+    let formattedAddress = location?.address || "Самовывоз"
+    if (location?.type === "pickup" && location.address) {
+      formattedAddress = `Самовывоз - ${location.address}`
+    } else if (location?.type === "delivery" && location.address) {
+      formattedAddress = `Доставка - ${location.address}`
+    }
+
     const payload = {
       name: formData.name,
       phone: formData.phone,
-      address: location?.address || "Самовывоз",
+      address: formattedAddress,
       items: itemsText,
       total: total,
       comment: formData.comment,

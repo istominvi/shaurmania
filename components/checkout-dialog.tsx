@@ -157,6 +157,13 @@ export function CheckoutDialog({ open, onOpenChange }: CheckoutDialogProps) {
             </div>
           )}
 
+          {location?.type === "pickup" && location.address && (
+            <div className="rounded-lg border border-border bg-muted/50 p-3">
+              <p className="text-sm font-medium">Адрес самовывоза</p>
+              <p className="text-sm text-muted-foreground">{location.address}</p>
+            </div>
+          )}
+
           <div className="space-y-2">
             <Label htmlFor="comment">Комментарий к заказу</Label>
             <Textarea

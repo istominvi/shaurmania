@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { MapPin, Store, Truck } from "lucide-react"
+import { Store, Truck } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -9,6 +9,12 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useCartStore } from "@/hooks/use-cart-store"
 import type { LocationInfo } from "@/lib/types"
+
+const BRANCHES = [
+  "Ул. Столярова, 83",
+  "Ул. Красной Звезды, 70/1",
+  "Ул. Новобульварная, 92 киоск",
+]
 
 interface LocationDialogProps {
   open: boolean
@@ -20,7 +26,8 @@ export function LocationDialog({ open, onOpenChange }: LocationDialogProps) {
   const setLocation = useCartStore((state) => state.setLocation)
 
   const [locationType, setLocationType] = useState<"delivery" | "pickup">(location?.type || "delivery")
-  const [address, setAddress] = useState(location?.address || "")
+  const [address, setAddress] = useState(location?.type === "delivery" ? location?.address || "" : "")
+  const [selectedBranch, setSelectedBranch] = useState(location?.type === "pickup" ? location?.address || "" : "")
 
   const handleSave = () => {
     const newLocation: LocationInfo = {
@@ -29,11 +36,17 @@ export function LocationDialog({ open, onOpenChange }: LocationDialogProps) {
 
     if (locationType === "delivery" && address) {
       newLocation.address = address
+    } else if (locationType === "pickup" && selectedBranch) {
+      newLocation.address = selectedBranch
     }
 
     setLocation(newLocation)
     onOpenChange(false)
   }
+
+  const isSaveDisabled =
+    (locationType === "delivery" && !address) ||
+    (locationType === "pickup" && !selectedBranch);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -63,23 +76,36 @@ export function LocationDialog({ open, onOpenChange }: LocationDialogProps) {
               </div>
 
               <div
-                className={`flex cursor-pointer items-start gap-4 rounded-lg border-2 p-4 transition-colors ${
+                className={`flex flex-col cursor-pointer gap-4 rounded-lg border-2 p-4 transition-colors ${
                   locationType === "pickup" ? "border-primary bg-primary/5" : "border-border hover:bg-accent"
                 }`}
                 onClick={() => setLocationType("pickup")}
               >
-                <RadioGroupItem value="pickup" id="pickup" className="mt-1" />
-                <div className="flex-1">
-                  <Label htmlFor="pickup" className="flex cursor-pointer items-center gap-2 font-semibold">
-                    <Store className="h-5 w-5" />
-                    Самовывоз
-                  </Label>
-                  <p className="mt-1 text-sm text-muted-foreground">Заберите заказ сами - бесплатно</p>
-                  <p className="mt-2 text-xs text-muted-foreground">
-                    <MapPin className="mr-1 inline h-3 w-3" />
-                    ул. Ленина, 123, Чита
-                  </p>
+                <div className="flex items-start gap-4">
+                  <RadioGroupItem value="pickup" id="pickup" className="mt-1" />
+                  <div className="flex-1">
+                    <Label htmlFor="pickup" className="flex cursor-pointer items-center gap-2 font-semibold">
+                      <Store className="h-5 w-5" />
+                      Самовывоз
+                    </Label>
+                    <p className="mt-1 text-sm text-muted-foreground">Заберите заказ сами - бесплатно</p>
+                  </div>
                 </div>
+
+                {locationType === "pickup" && (
+                  <div className="w-full pl-8" onClick={(e) => e.stopPropagation()}>
+                    <RadioGroup value={selectedBranch} onValueChange={setSelectedBranch}>
+                      {BRANCHES.map((branch) => (
+                        <div key={branch} className="flex items-center space-x-2 py-2">
+                          <RadioGroupItem value={branch} id={branch} />
+                          <Label htmlFor={branch} className="cursor-pointer text-sm font-normal">
+                            {branch}
+                          </Label>
+                        </div>
+                      ))}
+                    </RadioGroup>
+                  </div>
+                )}
               </div>
             </div>
           </RadioGroup>
@@ -99,7 +125,7 @@ export function LocationDialog({ open, onOpenChange }: LocationDialogProps) {
             </div>
           )}
 
-          <Button className="w-full" onClick={handleSave} disabled={locationType === "delivery" && !address}>
+          <Button className="w-full" onClick={handleSave} disabled={isSaveDisabled}>
             Сохранить
           </Button>
         </div>
